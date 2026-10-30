@@ -1,0 +1,115 @@
+package com.example.verstka_zad5
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.shape.RoundedCornerShape
+
+@Composable
+fun DashboardScreen(){
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ){
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(20.dp),
+            colors = CardDefaults.cardColors(containerColor = Color.White),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        ){
+            Column(modifier = Modifier.padding(16.dp)){
+                Text(
+                    text = "Dashboard",
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Box(modifier = Modifier.padding(top = 12.dp))
+
+                //верхние карточки
+                Row(modifier = Modifier.fillMaxWidth()){
+                    StatCard(
+                        value = "124",
+                        label = "Orders",
+                        modifier = Modifier.weight(1f)
+                    )
+                    Box(modifier = Modifier.padding(horizontal = 6.dp))
+                    StatCard(
+                        value = "82%",
+                        label = "Conversion",
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Box(modifier = Modifier.padding(top = 12.dp))
+
+                //нижняя карточка
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "Revenue",
+                            fontSize = 14.sp,
+                            color = Color.Black
+                        )
+                        Box(modifier = Modifier.padding(top = 6.dp))
+                        Text(
+                            text = "124 500 ₽",
+                            fontSize = 26.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun StatCard(value: String, label: String, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = value,
+                fontSize = 26.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+            Box(modifier = Modifier.padding(top = 6.dp))
+            Text(
+                text = label,
+                fontSize = 14.sp,
+                color = Color.Black
+            )
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DashboardPreview() {
+    DashboardScreen()
+}
